@@ -1,5 +1,5 @@
 <template>
-    <div class="carrousel-body" :ref="identitify">
+    <div class="carousel-body" :ref="identitify">
         <!--BOTON DESPLAZAMIENTO IZQUIERDA-->
         <div :style="{'max-width': arraow_width + 'px', 'aspect-ratio': 1}">
             <svg width="100%" height="100%" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
@@ -10,9 +10,9 @@
             </svg>
         </div>
 
-        <div class="carrousel-content">
-            <div class="carrousel-container carrousel-container-anim">
-                <div class="carrousel-element" v-for="(elemento, index) in data_carrousel">
+        <div class="carousel-content">
+            <div class="carousel-container carousel-container-anim">
+                <div class="carousel-element" v-for="(elemento, index) in data_carrousel">
                     <slot name="body" :item="elemento" :index="index"></slot>
                 </div>
             </div>
@@ -65,9 +65,9 @@
             window.addEventListener('resize', () => {
                 const root = this.$refs[this.identitify];
 
-                const container = root.querySelector('.carrousel-container');
+                const container = root.querySelector('.carousel-container');
                 
-                container.classList.remove('carrousel-container-anim');
+                container.classList.remove('carousel-container-anim');
 
                 this.resizeElements()
 
@@ -76,17 +76,17 @@
 
                 // Espera 200ms tras el último evento para volver a activar la animación
                 this.resizeTimeout = setTimeout(() => {
-                    container.classList.add('carrousel-container-anim');
+                    container.classList.add('carousel-container-anim');
                 }, 200); // Puedes ajustar el tiempo si lo necesitas
             });
         },
         methods: {
             resizeElements(){
                 const root = this.$refs[this.identitify];
-                const container_raiz = root.querySelector('.carrousel-content');
-                const container = root.querySelector('.carrousel-container');
+                const container_raiz = root.querySelector('.carousel-content');
+                const container = root.querySelector('.carousel-container');
                 
-                const items = container.querySelectorAll('.carrousel-element');
+                const items = container.querySelectorAll('.carousel-element');
 
                 //se recupera el ancho del contenedor raiz y se le quita lo que ocupan los botones laterales y el gap entre elementos
                 var containerWidth = container_raiz.offsetWidth;
@@ -110,7 +110,7 @@
             ajustarItems(direct){
                 const root = this.$refs[this.identitify];
 
-                this.carrousel = root.querySelector('.carrousel-container');
+                this.carrousel = root.querySelector('.carousel-container');
                 
                 if (direct) {
                     // posicion del carrousel + numero item mostrados * (ancho carrousel + (numeros item mostrados * margen entre elementos))
@@ -153,14 +153,14 @@
 
 <style scoped>
 
-    .carrousel-content{
+    .carousel-content{
       width: 100%;
       overflow: hidden;
       display: flex;
       flex-direction: row;
     }
 
-    .carrousel-container{
+    .carousel-container{
       position: relative;
       display: grid;
       width: 80%;
@@ -169,15 +169,15 @@
       right: 0px;
     }
 
-    .carrousel-container-anim{
+    .carousel-container-anim{
         transition: transform 1s ease; /* animación suave */
     }
 
-    .carrousel-element{
+    .carousel-element{
       height: 100%;
     }
 
-    .carrousel-body{
+    .carousel-body{
       display: flex;
       justify-content: space-between;
       flex-direction: row;
