@@ -1,6 +1,11 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import App from './components/App.vue';
+import CustomCarousel from './components/CustomCarousel.vue';
 
-createApp(App).mount('#app');
+const app = createApp(App);
 
+// Registrar el componente globalmente
+app.component('custom-carousel', CustomCarousel);
+
+app.mount('#app');
